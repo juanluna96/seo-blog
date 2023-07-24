@@ -3,11 +3,20 @@ const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
 
 require("dotenv").config();
 
 // app
 const app = express();
+
+// db
+mongoose
+  .connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("\x1b[32m%s\x1b[0m", "✅ DB connected"));
 
 // middlewares
 app.use(morgan("dev"));
@@ -31,5 +40,5 @@ const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   // Green console log
-  console.log("\x1b[32m%s\x1b[0m", `Server is running on port ${port}`);
+  console.log("\x1b[32m%s\x1b[0m", `✅ Server is running on port ${port}`);
 });
