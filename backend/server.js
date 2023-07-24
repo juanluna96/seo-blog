@@ -12,11 +12,14 @@ const app = express();
 
 // db
 mongoose
-  .connect(process.env.DATABASE, {
+  .connect(process.env.DATABASE_LOCAL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("\x1b[32m%s\x1b[0m", "✅ DB connected"));
+  .then(() => console.log("\x1b[32m%s\x1b[0m", "✅ DB connected"))
+  .catch((err) =>
+    console.log("\x1b[31m%s\x1b[0m", "❌ DB connection error: ", err)
+  );
 
 // middlewares
 app.use(morgan("dev"));
