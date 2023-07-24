@@ -4,6 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
+const router = require("./routes");
 
 require("dotenv").config();
 
@@ -34,9 +35,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // routes
-app.get("/api", (req, res) => {
-  res.json({ time: Date().toString() });
-});
+app.use(router);
 
 // port
 const port = process.env.PORT || 8000;
