@@ -2,14 +2,13 @@ import React from "react";
 import Layout from "../components/layout/Layout";
 import Link from "next/link";
 
-const Index = () => {
+const SignIn = () => {
   return (
     <Layout>
-      <h1>Home</h1>
-      <Link href="/signin">Sign In</Link>
-      <Link href="/signup">Sign Up</Link>
+      <h2>Sign In Page</h2>
+      <Link href="/">Home</Link>
     </Layout>
   );
 };
 
-export default Index;
+export default SignIn;
