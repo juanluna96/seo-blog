@@ -1,12 +1,12 @@
 import React from "react";
 import Layout from "../components/layout/Layout";
 import Link from "next/link";
+import SignUpComponent from "../components/auth/SignUpComponent";
 
 const SignUp = () => {
   return (
     <Layout>
-      <h2>Sign Up Page</h2>
-      <Link href="/">Home</Link>
+      <SignUpComponent />
     </Layout>
   );
 };

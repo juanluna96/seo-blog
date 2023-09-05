@@ -1,10 +1,13 @@
 import React from "react";
-import Header from "./Header";
+import dynamic from "next/dynamic";
+const HeaderNoSSR = dynamic(() => import("./Header"), {
+  ssr: false,
+});
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Header />
+      <HeaderNoSSR />
       {children}
       <p>Footer</p>
     </>
