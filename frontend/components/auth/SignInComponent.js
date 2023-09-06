@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
-import { signup } from "../../actions/auth";
+import { signin } from "../../actions/auth";
+import { Router } from "next/router";
 
-const SignUpComponent = () => {
+const SignInComponent = () => {
   const [values, setValues] = useState({
-    name: "",
     email: "",
     password: "",
     error: "",
@@ -24,36 +24,22 @@ const SignUpComponent = () => {
     setValues({ ...values, loading: true, error: false });
     const user = { name, email, password };
 
-    signup(user).then((data) => {
+    signin(user).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
       } else {
-        setValues({
-          ...values,
-          name: "",
-          email: "",
-          password: "",
-          error: "",
-          loading: false,
-          message: data.message,
-          showForm: false,
-        });
+        // Save Token Cookie
+        // Save User Info to Local Storage
+        // Authenticate User
+
+        Router.push(`/`);
       }
     });
   };
 
-  const signUpForm = () => {
+  const signInForm = () => {
     return (
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <input
-            value={name}
-            onChange={handleChange("name")}
-            type="text"
-            className="form-control"
-            placeholder="Type your name"
-          />
-        </div>
         <div className="form-group">
           <input
             value={email}
@@ -91,9 +77,9 @@ const SignUpComponent = () => {
       {showLoading()}
       {showError()}
       {showMessage()}
-      {showForm && signUpForm()}
+      {showForm && signInForm()}
     </Fragment>
   );
 };
 
-export default SignUpComponent;
+export default SignInComponent;
